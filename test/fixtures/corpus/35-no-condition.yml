@@ -1,0 +1,16 @@
+title: Suspicious Process 932
+id: 06138930-96c3-06af-bbf9-7297acf5238b
+status: test
+description: Invented detection 932
+author: Example Team
+date: 2026-02-11
+logsource:
+    category: file_event
+    product: linux
+detection:
+    selection:
+        Image|endswith: '\cmd.exe'
+        CommandLine|contains: 'ab'
+falsepositives:
+    - Administrative tools
+level: severe

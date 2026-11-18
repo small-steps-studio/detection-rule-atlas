@@ -1,0 +1,60 @@
+title: Encoded Command 70
+id: e106ff81-5b93-ad6d-a7a3-703d84782fc6
+status: wip
+description: Invented detection 70
+date: 2026-02-11
+tags:
+    - attack.credential_access
+logsource:
+    category: process_creation
+    product: linux
+detection:
+    selection:
+        Image|endswith: '\cmd.exe'
+        CommandLine|contains: ' -enc '
+    filter_admin:
+        User|contains: SYSTEM
+    condition: selection and not filter_admin
+level: high
+---
+title: New Service 71
+id: 437e8bfc-d840-6bb3-c4a8-c6c02f163e0e
+status: experimental
+author: Example Team
+date: 2026-02-11
+tags:
+    - attack.execution
+    - attack.t1003
+logsource:
+    category: network_connection
+    product: linux
+detection:
+    selection:
+        Image|endswith: '*'
+        CommandLine|contains: 'ab'
+    filter_admin:
+        User|contains: SYSTEM
+    condition: selection
+falsepositives:
+    - Administrative tools
+level: high
+---
+title: Suspicious Process 72
+id: 07088142-bb69-eec0-4584-78f889476b95
+status: test
+description: Invented detection 72
+date: 11.02.2026
+tags:
+    - attack.persistence
+    - attack.t1059.001
+logsource:
+    category: network_connection
+    product: linux
+detection:
+    selection:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains: 'ab'
+    condition: 1 of selection*
+falsepositives:
+    - Administrative tools
+level: low

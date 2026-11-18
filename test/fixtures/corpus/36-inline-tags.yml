@@ -1,0 +1,13 @@
+title: Inline Tags
+id: 0e9f1c2b-3a4d-4e5f-8a6b-7c8d9e0f1a2b
+status: test
+tags: [attack.execution, attack.t1059.001, attack.T1105]
+logsource:
+    product: windows
+detection:
+    sel:
+        - powershell.exe
+        - pwsh.exe
+    condition: sel
+level: medium
+falsepositives: []

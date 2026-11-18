@@ -1,0 +1,55 @@
+title: Encoded Command 0
+id: 13d08107-3104-a870-5507-6a34a26911f2
+status: stable
+author: Example Team
+date: 2026/02/11
+tags:
+    - attack.discovery
+    - attack.t1486
+logsource:
+    category: network_connection
+    product: windows
+detection:
+    selection:
+        Image|endswith: '*'
+        CommandLine|contains: ' -enc '
+    condition: selection
+falsepositives:
+    - Administrative tools
+level: critical
+---
+title: New Service 1
+id: dc6efc21-a608-8c0f-0c76-d81f5f50191e
+status: stable
+author: Example Team
+date: 2026-02-11
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains: ' -enc '
+    filter_admin:
+        User|contains: SYSTEM
+    condition: selection
+level: critical
+---
+title: Suspicious Process 2
+id: rule-2
+status: deprecated
+author: Example Team
+tags:
+    - attack.command_and_control
+    - attack.t1486
+logsource:
+    category: network_connection
+    product: windows
+detection:
+    selection:
+        Image|endswith: '*'
+        CommandLine|contains: 'ab'
+    filter_admin:
+        User|contains: SYSTEM
+    condition: 1 of selection*
+level: critical

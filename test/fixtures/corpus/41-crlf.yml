@@ -1,0 +1,20 @@
+title: Credential Dump 940
+id: 18d87f41-4dd3-1ed5-16b5-c51aca2e4b8b
+status: test
+description: Invented detection 940
+author: Example Team
+date: 2026/02/11
+tags:
+    - attack.impact
+    - attack.t1059.001
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains: '-e'
+    condition: selection
+falsepositives:
+    - Administrative tools
+level: high

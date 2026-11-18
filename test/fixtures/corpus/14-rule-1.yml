@@ -1,0 +1,18 @@
+title: Credential Dump 10
+id: ef845586-0ac7-3e09-1c33-8eec6675e16c
+status: stable
+date: 11.02.2026
+tags:
+    - attack.defense_evasion
+    - attack.t1105
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains: ' -enc '
+    condition: selection and not filter_admin
+falsepositives:
+    - Administrative tools
+level: low

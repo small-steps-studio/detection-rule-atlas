@@ -1,0 +1,61 @@
+title: New Service 100
+id: a3dac3c1-50ff-cdd0-1ecd-84c1397883b8
+status: stable
+description: Invented detection 100
+date: 2026/02/11
+tags:
+    - attack.defense_evasion
+    - attack.t1059.001
+logsource:
+    category: file_event
+    product: linux
+detection:
+    selection:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains: '-e'
+    filter_admin:
+        User|contains: SYSTEM
+    condition: selection and not filter
+falsepositives:
+    - Administrative tools
+level: critical
+---
+title: Encoded Command 101
+id: rule-101
+status: deprecated
+description: Invented detection 101
+author: Example Team
+date: 2026-02-11
+tags:
+    - attack.credential_access
+    - attack.t1027
+logsource:
+    category: network_connection
+    product: windows
+detection:
+    selection:
+        Image|endswith: '*'
+        CommandLine|contains: '-e'
+    filter_admin:
+        User|contains: SYSTEM
+    condition: 1 of selection*
+level: high
+---
+title: New Service 102
+id: 255e2e5c-83de-7a31-0603-d636d3b65393
+status: deprecated
+date: 2026/02/11
+tags:
+    - attack.persistence
+    - attack.t1547.001
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains: '-e'
+    condition: selection
+falsepositives:
+    - Administrative tools
+level: low

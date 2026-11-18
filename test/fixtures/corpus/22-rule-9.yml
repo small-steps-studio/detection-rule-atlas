@@ -1,0 +1,20 @@
+title: Encoded Command 90
+id: 391f78c2-f6a3-85f1-79fe-ca0baeac07cd
+status: experimental
+author: Example Team
+tags:
+    - attack.command_and_control
+    - attack.t1003
+logsource:
+    category: network_connection
+    product: linux
+detection:
+    selection:
+        Image|endswith: '*'
+        CommandLine|contains: ' -enc '
+    filter_admin:
+        User|contains: SYSTEM
+    condition: 1 of selection*
+falsepositives:
+    - Administrative tools
+level: high

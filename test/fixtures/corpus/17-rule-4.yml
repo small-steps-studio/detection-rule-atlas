@@ -1,0 +1,61 @@
+title: New Service 40
+id: 7e9c0801-779d-5e0a-aadb-705c093f23b3
+status: deprecated
+description: Invented detection 40
+author: Example Team
+date: 2026/02/11
+tags:
+    - attack.discovery
+    - attack.t1105
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\cmd.exe'
+        CommandLine|contains: '-e'
+    filter_admin:
+        User|contains: SYSTEM
+    condition: selection and not filter
+level: severe
+---
+title: Encoded Command 41
+id: 6b387d99-6282-370b-c828-366aeaf5a7eb
+status: experimental
+description: Invented detection 41
+author: Example Team
+date: 2026-02-11
+tags:
+    - attack.execution
+    - attack.t1486
+logsource:
+    category: file_event
+    product: linux
+detection:
+    selection:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains: 'ab'
+    filter_admin:
+        User|contains: SYSTEM
+    condition: selection and not filter_admin
+level: medium
+---
+title: Credential Dump 42
+status: test
+description: Invented detection 42
+author: Example Team
+date: 2026/02/11
+tags:
+    - attack.defense_evasion
+    - attack.t1027
+logsource:
+    category: process_creation
+    product: linux
+detection:
+    selection:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains: '-e'
+    condition: selection and not filter_admin
+falsepositives:
+    - Administrative tools
+level: severe

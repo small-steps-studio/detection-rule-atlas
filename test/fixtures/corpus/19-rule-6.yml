@@ -1,0 +1,15 @@
+title: Suspicious Process 60
+id: ca0122d1-6d1e-04d7-6cf1-b498d543ecd0
+status: stable
+date: 2026-02-11
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection:
+        Image|endswith: '*'
+        CommandLine|contains: 'ab'
+    filter_admin:
+        User|contains: SYSTEM
+    condition: selection and not filter
+level: low

@@ -1,0 +1,21 @@
+title: Suspicious Process 20
+id: 5442c2f6-ff52-33bd-a9d3-ef2336f43255
+status: stable
+description: Invented detection 20
+author: Example Team
+date: 2026/02/11
+tags:
+    - attack.discovery
+logsource:
+    category: network_connection
+    product: linux
+detection:
+    selection:
+        Image|endswith: '\cmd.exe'
+        CommandLine|contains: 'ab'
+    filter_admin:
+        User|contains: SYSTEM
+    condition: selection and not filter
+falsepositives:
+    - Administrative tools
+level: high

@@ -1,0 +1,13 @@
+title: New Service 931
+id: rule-931
+status: test
+description: Invented detection 931
+tags:
+    - attack.discovery
+    - attack.t1003
+logsource:
+    category: file_event
+    product: linux
+falsepositives:
+    - Administrative tools
+level: low

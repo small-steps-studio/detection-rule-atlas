@@ -1,0 +1,12 @@
+# a comment line
+
+title: With Comments
+# another
+status: stable
+logsource:
+    product: windows
+detection:
+    sel:
+        Image|endswith: '\\rundll32.exe'
+    condition: sel
+level: high

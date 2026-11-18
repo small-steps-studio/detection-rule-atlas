@@ -1,0 +1,18 @@
+id: 8ebc2f41-039c-c662-6a30-4c51b7b9d8f0
+status: stable
+description: Invented detection 930
+author: Example Team
+tags:
+    - attack.discovery
+    - attack.t1059.001
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains: '-e'
+    filter_admin:
+        User|contains: SYSTEM
+    condition: 1 of selection*
+level: medium

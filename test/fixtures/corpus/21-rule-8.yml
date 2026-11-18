@@ -1,0 +1,49 @@
+title: New Service 80
+status: experimental
+author: Example Team
+logsource:
+    category: network_connection
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\cmd.exe'
+        CommandLine|contains: 'ab'
+    condition: selection
+level: critical
+---
+title: Encoded Command 81
+id: 1e2a426f-aa91-ebf7-430b-3694e5b97fff
+status: test
+description: Invented detection 81
+tags:
+    - attack.persistence
+logsource:
+    category: network_connection
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains: 'ab'
+    filter_admin:
+        User|contains: SYSTEM
+    condition: selection and not filter_admin
+level: severe
+---
+title: Credential Dump 82
+id: 9576a378-c1d2-20f7-aaac-eee69b985308
+status: experimental
+description: Invented detection 82
+author: Example Team
+logsource:
+    category: network_connection
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains: ' -enc '
+    filter_admin:
+        User|contains: SYSTEM
+    condition: selection
+falsepositives:
+    - Administrative tools
+level: medium

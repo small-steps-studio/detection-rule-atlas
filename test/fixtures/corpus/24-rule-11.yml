@@ -1,0 +1,60 @@
+title: Encoded Command 110
+id: rule-110
+status: experimental
+author: Example Team
+tags:
+    - attack.command_and_control
+    - attack.t1071.001
+logsource:
+    category: process_creation
+    product: linux
+detection:
+    selection:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains: ' -enc '
+    condition: selection and not filter
+falsepositives:
+    - Administrative tools
+level: low
+---
+title: New Service 111
+id: 4f8aaf4a-5721-68e4-5c05-25ea9a65c59f
+status: test
+author: Example Team
+date: 11.02.2026
+tags:
+    - attack.persistence
+    - attack.t1547.001
+logsource:
+    category: file_event
+    product: linux
+detection:
+    selection:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains: '-e'
+    filter_admin:
+        User|contains: SYSTEM
+    condition: 1 of selection*
+falsepositives:
+    - Administrative tools
+level: medium
+---
+title: Encoded Command 112
+id: bfd95aef-f17b-1baf-bf04-e1b73226d5d1
+status: test
+description: Invented detection 112
+author: Example Team
+tags:
+    - attack.execution
+    - attack.t1027
+logsource:
+    category: file_event
+    product: windows
+detection:
+    selection:
+        Image|endswith: '\powershell.exe'
+        CommandLine|contains: 'ab'
+    condition: selection and not filter
+falsepositives:
+    - Administrative tools
+level: medium

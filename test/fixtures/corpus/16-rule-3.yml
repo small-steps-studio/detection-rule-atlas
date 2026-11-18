@@ -1,0 +1,54 @@
+title: Credential Dump 30
+status: test
+author: Example Team
+logsource:
+    category: process_creation
+    product: linux
+detection:
+    selection:
+        Image|endswith: '\cmd.exe'
+        CommandLine|contains: 'ab'
+    condition: 1 of selection*
+falsepositives:
+    - Administrative tools
+level: low
+---
+title: Encoded Command 31
+id: dcb26745-7307-cf04-fc9a-e26f92c45114
+status: wip
+description: Invented detection 31
+author: Example Team
+tags:
+    - attack.credential_access
+    - attack.t1105
+logsource:
+    category: process_creation
+    product: linux
+detection:
+    selection:
+        Image|endswith: '\cmd.exe'
+        CommandLine|contains: '-e'
+    filter_admin:
+        User|contains: SYSTEM
+    condition: selection and not filter_admin
+level: high
+---
+title: New Service 32
+id: a6ab7081-7908-6f77-50b4-9e30fff8718a
+status: test
+description: Invented detection 32
+author: Example Team
+tags:
+    - attack.credential_access
+    - attack.t1547.001
+logsource:
+    category: file_event
+    product: linux
+detection:
+    selection:
+        Image|endswith: '*'
+        CommandLine|contains: '-e'
+    filter_admin:
+        User|contains: SYSTEM
+    condition: selection
+level: medium
